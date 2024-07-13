@@ -1,0 +1,18 @@
+# cache
+__pycache__/
+*.pyc
+
+# database
+db.sqlite3
+
+# secrets
+.env
+
+# virtualenv
+venv/
+
+# node
+node_modules/
+
+# webpack
+webpack-stats.json
