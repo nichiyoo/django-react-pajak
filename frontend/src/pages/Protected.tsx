@@ -5,6 +5,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/lib/constant';
 import { Navigate } from 'react-router-dom';
 import axios from '@/lib/axios';
 import { jwtDecode } from 'jwt-decode';
+import { isAxiosError } from 'axios';
 
 interface ProtectedPageProps {
 	children: React.ReactNode;
@@ -40,6 +41,12 @@ const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
 				localStorage.setItem(ACCESS_TOKEN_KEY, data.access);
 				setAuth(true);
 			} catch (error) {
+				if (isAxiosError(error) && error.response?.status === 401) {
+					localStorage.removeItem(ACCESS_TOKEN_KEY);
+					localStorage.removeItem(REFRESH_TOKEN_KEY);
+					setAuth(false);
+					return;
+				}
 				console.error(error);
 			}
 		}
