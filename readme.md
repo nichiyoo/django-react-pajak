@@ -23,9 +23,9 @@ git clone https://github.com/nichiyoo/django-react-pajak.git
 2. Install Piplock dependencies
 
 ```bash
-# menggunakan piplock
-pip install piplock
-piplock install
+# menggunakan pipenv
+pip install --user pipenv
+pipenv install
 
 # menggunakan virtualenv
 virtualenv venv
